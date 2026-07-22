@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cristianporco.it/app/evolab/sitemap.xml

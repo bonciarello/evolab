@@ -26,6 +26,13 @@ jobs:
           CI: "false"
         run: |
           set -e
+          APPDIR="."
+          if [ ! -f package.json ] && [ ! -f index.html ]; then
+            for d in */; do
+              if [ -f "${d}package.json" ] || [ -f "${d}index.html" ]; then APPDIR="${d%/}"; break; fi
+            done
+          fi
+          cd "$APPDIR"
           OUT=""
           if [ -f package.json ] && grep -q '"build"' package.json; then
             npm install --no-audit --no-fund

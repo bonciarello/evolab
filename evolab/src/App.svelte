@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import Header from './components/Header.svelte';
   import Controls from './components/Controls.svelte';
   import StatsBar from './components/StatsBar.svelte';
@@ -93,8 +94,9 @@
     }
   }
 
-  // Inizializza al mount
-  $effect(() => {
+  // Inizializza al mount (onMount: gira una sola volta, niente tracking reattivo
+  // — un $effect qui legge e scrive `history` e va in loop infinito)
+  onMount(() => {
     initSimulation();
     return () => {
       if (intervalId) clearInterval(intervalId);
